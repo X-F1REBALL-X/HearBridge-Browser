@@ -73,12 +73,26 @@ Send a POST to `http://<console-ip>:8096/api/stop`, or reboot the console.
 
 ## Screenshots
 
-<p align="center">
-  <img src="docs/screenshots/play.png" alt="Play" width="24%">
-  <img src="docs/screenshots/play-500.png" alt="Volume boost" width="24%">
-  <img src="docs/screenshots/info.png" alt="Info" width="24%">
-  <img src="docs/screenshots/iphone.png" alt="iPhone" width="24%">
-</p>
+<table>
+  <tr>
+    <th>Play</th>
+    <th>Sound</th>
+    <th>Record</th>
+    <th>Info</th>
+  </tr>
+  <tr>
+    <td width="25%"><img src="docs/screenshots/play.png" alt="Play tab"></td>
+    <td width="25%"><img src="docs/screenshots/sound.png" alt="Sound tab"></td>
+    <td width="25%"><img src="docs/screenshots/record.png" alt="Record tab with export"></td>
+    <td width="25%"><img src="docs/screenshots/info.png" alt="Info tab"></td>
+  </tr>
+  <tr>
+    <th colspan="4">Tablet</th>
+  </tr>
+  <tr>
+    <td colspan="4"><img src="docs/screenshots/tablet.png" alt="Tablet layout"></td>
+  </tr>
+</table>
 
 ## Building from source
 
