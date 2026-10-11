@@ -1,0 +1,13 @@
+# Never commit the signing keystore or its passwords
+/keystore/
+*.jks
+*.keystore
+keystore.properties
+local.properties
+.gradle/
+build/
+app/build/
+*.apk
+.idea/
+*.iml
+/dist/
