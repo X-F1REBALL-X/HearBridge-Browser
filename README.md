@@ -1,8 +1,10 @@
 <img src="docs/header.png" alt="HearBridge Browser">
 
-Listen to your PS5's audio on your phone, tablet or PC. No app, no Bluetooth, just a browser on the same Wi-Fi.
+Listen to your PS5's audio on your phone, tablet or PC. No Bluetooth or extra hardware, just a browser (or the Android/Windows app) on the same Wi-Fi.
 
 HearBridge Browser is a small payload for a jailbroken PS5. It captures the console's audio output and serves it on your local network, together with a player page. Open the page, tap Play, and you hear the game.
+
+Full guide with setup, tips and FAQ: https://x-f1reball-x.github.io/HearBridge-Browser/guide/
 
 <p align="center">
   <img src="docs/banner.png" alt="HearBridge Browser on phone, tablet and PC" width="100%">
@@ -143,7 +145,7 @@ The icon and version info are generated into a `.syso` file during the build. Se
 
 ## Credits
 
-- The audio capture code comes from my earlier project HearBridge PS5, and the limiter in the page is a port of its `gain.c`.
+- The audio capture code comes from my earlier project [HearBridge PS5](https://github.com/X-F1REBALL-X/HearBridge-PS5), and the limiter in the page is a port of its `gain.c`.
 - MP3 export uses [lamejs](https://github.com/zhuker/lamejs) (LGPL-3.0, unmodified, in `vendor/lamejs`).
 
 ## Support
@@ -155,4 +157,4 @@ If you like the project, you can buy me a coffee:
 
 ## License
 
-GPL-3.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+GPL-3.0-or-later. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
