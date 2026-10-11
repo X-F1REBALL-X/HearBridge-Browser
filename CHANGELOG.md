@@ -7,6 +7,7 @@ First release.
 - PS5 payload that streams console audio over the LAN on port 8096
 - Player page that works in any modern browser, including iPhone Safari
 - Android app with automatic console discovery
+- Windows app (portable exe, uses WebView2)
 - Volume up to 500% with a soft limiter
 - Sound modes: Normal, Game, Music, Dynamic, Voice, Night
 - Auto buffer, plus Low, Stable and Manual

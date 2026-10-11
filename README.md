@@ -12,6 +12,7 @@ HearBridge Browser is a small payload for a jailbroken PS5. It captures the cons
 
 - **Works in any modern browser**: Chrome, Firefox, Edge, Safari, including iPhone and iPad.
 - **Android app**: finds your console on the network by itself, so you don't have to type the IP.
+- **Windows app**: a small portable `.exe` that opens the player in its own window. Nothing to install.
 - **Volume boost up to 500%**, with a soft limiter so it doesn't clip or distort.
 - **Sound modes**: Normal, Game, Music, Dynamic, Voice and Night.
 - **Automatic latency**: the Auto buffer learns the lowest delay your device can handle without dropouts. You can also pick Low, Stable or set it by hand.
@@ -37,6 +38,14 @@ HearBridge Browser is a small payload for a jailbroken PS5. It captures the cons
    http://<console-ip>:8096
    ```
    Or install `HearBridge-Browser-1.0.0.apk` on Android and pick your console from the list.
+
+### Windows app
+
+Download `HearBridge-Browser-1.0.0-windows-x64.exe` from the [Releases](../../releases) page and run it. No install needed.
+
+- Needs Windows 10 or 11 (x64) with the WebView2 runtime. It's built into Windows 11 and current Windows 10, so you most likely have it already.
+- The exe isn't signed, so SmartScreen may warn you the first time. Click **More info**, then **Run anyway**.
+- If it can't reach the console, type your console's IP in the box and press Retry. It remembers the last IP that worked.
 
 The payload keeps running until you stop it or turn off the console. Sending it again replaces the running copy.
 
@@ -120,6 +129,17 @@ cd android
 ```
 
 Release signing reads `android/keystore/keystore.properties`. Without it the APK is built unsigned. See [android/README.md](android/README.md).
+
+### Windows app
+
+Needs Go 1.24+ and [go-winres](https://github.com/tc-hib/go-winres) (the script installs it if it's missing). Builds from Linux or Windows (Git Bash).
+
+```
+cd windows
+./build.sh          # -> windows/dist/HearBridge-Browser-1.0.0-windows-x64.exe
+```
+
+The icon and version info are generated into a `.syso` file during the build. See [windows/README.md](windows/README.md).
 
 ## Credits
 
