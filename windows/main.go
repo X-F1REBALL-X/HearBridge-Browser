@@ -21,7 +21,7 @@ import (
 const (
 	appName     = "HearBridge Browser"
 	appVersion  = "1.0.0"
-	defaultIP   = "192.168.50.10"
+	defaultIP   = "192.168.1.50"
 	defaultPort = "8096"
 )
 
@@ -56,7 +56,7 @@ func saveSettings(s settings) {
 	_ = os.WriteFile(settingsPath(), b, 0o644)
 }
 
-// normalize turns "192.168.50.10", "http://192.168.50.10:8096/" etc. into
+// normalize turns "192.168.1.50", "http://192.168.1.50:8096/" etc. into
 // "host:port" (port defaults to 8096).
 func normalize(in string) string {
 	s := strings.TrimSpace(in)

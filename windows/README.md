@@ -2,7 +2,7 @@
 
 Portable `.exe` (Go + github.com/jchv/go-webview2, no CGO) that opens a native
 window "HearBridge Browser 1.0.0" with Edge WebView2 and loads
-`http://<console-ip>:8096/` (default 192.168.50.10).
+`http://<console-ip>:8096/` (default 192.168.1.50, or the last IP that worked).
 
 - Probes `http://<ip>:8096/status` first (4 s timeout). On failure shows a page
   with a Console IP box + Retry. Last working IP saved in
