@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HearBridge Browser</string>
+    <string name="credit">by X-F1REBALL-X · v1.0.0</string>
+    <string name="searching">Searching for console…</string>
+    <string name="retry">Retry</string>
+    <string name="manual_hint">Console IP, e.g. 192.168.1.50</string>
+    <string name="connect">Connect</string>
+    <string name="manual_title">Or enter the console IP</string>
+    <string name="help">Start the HearBridge Browser payload on the PS5 and keep this phone on the same Wi-Fi.</string>
+</resources>
