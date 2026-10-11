@@ -14,7 +14,7 @@ HearBridge Browser PS5 payload serves at `http://<console-ip>:8096/`.
 - Cleartext http is allowed (LAN IPs cannot be whitelisted by domain).
 - minSdk 24, targetSdk 35, Java only, no libraries.
 
-Not yet: playback with the screen off / in the background (planned later).
+Playback keeps going with the screen off or the app in the background.
 
 ## Build
 
