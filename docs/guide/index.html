@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>HearBridge Browser 1.0.0: guide for streaming PS5 audio to a browser</title>
+<meta content="HearBridge Browser is a PS5 payload that streams the console's audio to any browser on your local network. Install, setup, tabs, tips and FAQ." name="description"/>
+<meta content="#0a0f1e" name="theme-color"/>
+<link href="../icon-1024.png" rel="icon" type="image/png"/>
+<style>
+:root{--bg:#0a0f1e;--void:#070b16;--deck:#0e1528;--card:#111a30;--card2:#17223d;--edge:#1f2c4b;--edge2:#2c3d64;
+--ink:#eef3ff;--ink2:#c2cde6;--mute:#8d9aba;
+--pri:#2b6cff;--pri2:#4f9bff;--sky:#60a5fa;--cyan:#22c3ee;--mint:#3dd68c;--amber:#f5a623;--rose:#ff5e5b;--violet:#7c6cff;--slate:#64748b;
+--r:16px;--max:1200px}
+*{box-sizing:border-box}
+html{background:var(--bg);font-size:16px;scroll-behavior:smooth;scroll-padding-top:5.5rem;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;color:var(--ink);font:1rem/1.6 "Inter","Segoe UI","SF Pro Display","Helvetica Neue",system-ui,sans-serif;overflow-x:hidden;
+background:radial-gradient(70vw 60vh at 85% -10%,rgba(43,108,255,.16),transparent 60%),radial-gradient(60vw 55vh at -10% 110%,rgba(34,195,238,.08),transparent 60%),var(--bg);background-attachment:fixed}
+a{color:var(--pri2)}
+img{max-width:100%;height:auto}
+code{font:600 .88em/1.4 ui-monospace,"Cascadia Mono","DejaVu Sans Mono",Menlo,Consolas,monospace;color:#dbe6ff;background:var(--card2);border:1px solid var(--edge2);border-radius:6px;padding:.05em .4em;white-space:nowrap}
+pre{margin:.7rem 0 0;padding:.8rem 1rem;background:var(--void);border:1px solid var(--edge2);border-radius:12px;overflow-x:auto}
+pre code{background:none;border:0;padding:0;white-space:pre}
+.in{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+/* header */
+.top{position:sticky;top:0;z-index:50;background:rgba(10,15,30,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--edge)}
+.top .in{display:flex;align-items:center;height:4.6rem}
+.brand{display:flex;align-items:center;color:var(--ink);text-decoration:none;margin-inline-end:auto}
+.logo{width:2.8rem;height:2.8rem;margin-inline-end:.8rem;border-radius:13px;overflow:hidden;box-shadow:0 0 0 1px rgba(79,155,255,.35),0 6px 18px rgba(43,108,255,.35)}
+.logo img{display:block;width:100%;height:100%}
+.name{font-size:1.35rem;font-weight:800;line-height:1.05;white-space:nowrap}
+.name b{background:linear-gradient(90deg,var(--pri2),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.by{display:block;margin-top:.22rem;font-size:.8rem;font-weight:700;color:#fff;letter-spacing:.01em}
+.links{display:flex;align-items:center}
+.links a{color:var(--ink2);text-decoration:none;font-size:.9rem;font-weight:700;padding:.5rem .7rem;border-radius:10px;white-space:nowrap}
+.links a:hover{background:var(--card2);color:var(--ink)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.4rem 1.4rem;font-weight:800;font-size:1rem;text-decoration:none;border-radius:12px;color:var(--ink);background:var(--card);border:1px solid var(--edge2);margin:0 .6rem .6rem 0}
+.btn.pri{color:#fff;background:linear-gradient(135deg,var(--pri),var(--pri2));border-color:transparent;box-shadow:0 8px 22px rgba(43,108,255,.35)}
+.btn:hover{filter:brightness(1.1)}
+.btn small{font-weight:600;opacity:.8;margin-inline-start:.5rem;font-size:.8rem}
+.btn svg{width:1.15rem;height:1.15rem;margin-inline-end:.55rem;flex:0 0 auto}
+/* hero */
+.hero{padding:4rem 0 3rem}
+.hero .in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-gap:3rem;align-items:center}
+.kicker{display:inline-block;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);background:rgba(43,108,255,.16);border-radius:999px;padding:.2rem .8rem;margin-bottom:1rem}
+h1{margin:0 0 1rem;font-size:3rem;line-height:1.08;font-weight:900;letter-spacing:-.01em}
+h1 b{background:linear-gradient(90deg,var(--pri2),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:1.15rem;color:var(--ink2);margin:0 0 1.6rem}
+.shot{display:block;width:100%;border-radius:var(--r);border:1px solid var(--edge2);box-shadow:0 20px 50px rgba(0,0,0,.45),0 0 0 1px rgba(79,155,255,.06)}
+.small{font-size:.86rem;color:var(--mute)}
+.small a{color:var(--ink2);font-weight:700}
+/* sections */
+section{padding:3.5rem 0}
+.band{background:rgba(14,21,40,.7);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+h2{display:flex;align-items:center;margin:0 0 .6rem;font-size:1.8rem;font-weight:900;line-height:1.2}
+h2:before{content:"";width:.75rem;height:.75rem;margin-inline-end:.7rem;border-radius:4px;background:var(--c,var(--pri));box-shadow:0 0 12px var(--c,var(--pri))}
+.sec-lead{margin:0 0 2rem;color:var(--ink2);max-width:48rem;font-size:1.05rem}
+h3{margin:0 0 .5rem;font-size:1.12rem;font-weight:800}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-gap:1.2rem}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-gap:1.5rem}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:var(--r);padding:1.3rem 1.4rem;box-shadow:0 1px 2px rgba(0,0,0,.2),0 6px 20px rgba(0,0,0,.18)}
+.card p{margin:0;color:var(--ink2)}
+.card p+p{margin-top:.6rem}
+.card code,.note code{white-space:normal;overflow-wrap:anywhere}
+.ico{display:flex;align-items:center;justify-content:center;width:3rem;height:3rem;margin-bottom:.8rem;border-radius:13px;color:#fff;background:linear-gradient(160deg,rgba(255,255,255,.3),rgba(255,255,255,0) 50%,rgba(0,0,0,.2)),var(--c,var(--pri));box-shadow:0 3px 10px rgba(0,0,0,.3)}
+.ico svg{width:1.6rem;height:1.6rem;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* steps */
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);grid-gap:.9rem}
+.steps li{min-width:0}
+.steps li{position:relative;padding:1.1rem 1.3rem 1.1rem 4.2rem;background:var(--card);border:1px solid var(--edge);border-radius:var(--r)}
+.steps li:before{counter-increment:s;content:counter(s);position:absolute;left:1.2rem;top:1.05rem;width:2.1rem;height:2.1rem;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;background:var(--pri)}
+.steps b{display:block;margin-bottom:.15rem}
+.steps span{color:var(--ink2)}
+.steps .or{display:block;margin-top:.6rem}
+/* tabs */
+.tab{display:grid;grid-template-columns:minmax(0,17rem) minmax(0,1fr);grid-gap:2rem;align-items:start}
+.tab+.tab{margin-top:2.2rem;padding-top:2.2rem;border-top:1px solid var(--edge)}
+.tab .shot{max-width:17rem}
+.tab h3{display:flex;align-items:center;font-size:1.35rem;margin-bottom:.7rem}
+.tab h3 .ico{width:2.4rem;height:2.4rem;margin:0 .7rem 0 0;border-radius:11px}
+.tab h3 .ico svg{width:1.3rem;height:1.3rem}
+.tab p{margin:0 0 .8rem;color:var(--ink2)}
+.tab ul{margin:0 0 .8rem;padding-inline-start:1.2rem;color:var(--ink2)}
+.tab li{margin:.3rem 0}
+.tab li b{color:var(--ink)}
+/* gallery */
+.gal figure{margin:0}
+.gal figcaption{margin-top:.6rem;font-weight:700;color:var(--ink2)}
+/* notes */
+.notes{columns:2;column-gap:1.5rem}
+.note{break-inside:avoid;margin:0 0 1.5rem;background:var(--card);border:1px solid var(--edge);border-top:4px solid var(--c);border-radius:var(--r);padding:1.2rem 1.4rem}
+.note h3{color:var(--c)}
+.note p{margin:0;color:var(--ink2)}
+.note p+p{margin-top:.6rem}
+.note ul{margin:0;padding-inline-start:1.2rem}
+.note li{margin:.3rem 0;color:var(--ink2)}
+.callout{border-inline-start:4px solid var(--amber);background:rgba(245,166,35,.08);border-radius:12px;padding:1rem 1.2rem;color:var(--ink2);margin-top:1.5rem}
+.callout b{color:var(--ink)}
+/* downloads */
+.dl .card{display:flex;flex-direction:column}
+.dl .card p{flex:1;margin-bottom:1.1rem}
+.dl .btn{margin:0;align-self:flex-start}
+.file{display:block;font:600 .82rem/1.4 ui-monospace,"Cascadia Mono","DejaVu Sans Mono",Menlo,Consolas,monospace;color:var(--mute);margin:-.2rem 0 .7rem;overflow-wrap:anywhere}
+/* footer */
+footer{padding:2.5rem 0 3rem;color:var(--mute);font-size:.9rem;border-top:1px solid var(--edge)}
+footer a{color:var(--ink2);font-weight:700}
+footer .kofi{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin-top:1.2rem}
+footer .kofi .btn{min-height:2.75rem;padding:.3rem 1.1rem;font-size:.95rem;margin:0;color:var(--ink);background:var(--card);border-color:var(--edge2)}
+footer .kofi .btn:hover{border-color:var(--pri2)}
+.bi-kofi{fill:#ff5e5b}
+.bi-x{fill:#fff}
+@media(max-width:960px){.hero .in,.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.notes{columns:1}h1{font-size:2.3rem}
+ .top .in{flex-wrap:wrap;height:auto;padding-top:.7rem}
+ .links{order:3;width:calc(100% + 3rem);margin:.6rem -1.5rem 0;padding:0 1.5rem .5rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ .links::-webkit-scrollbar{display:none}
+ .links a{flex:0 0 auto;padding:.45rem .8rem;background:var(--card);border:1px solid var(--edge);margin-inline-end:.45rem}
+ .tab{grid-template-columns:minmax(0,14rem) minmax(0,1fr)}
+}
+@media(max-width:600px){
+ .in{padding:0 1rem}
+ .grid3{grid-template-columns:1fr}
+ .links{width:calc(100% + 2rem);margin:.55rem -1rem 0;padding:0 1rem .5rem}
+ .logo{width:2.5rem;height:2.5rem;margin-inline-end:.65rem}
+ .name{font-size:1.2rem}
+ .hero{padding:2rem 0 2rem}
+ .hero .in{grid-gap:1.8rem}
+ h1{font-size:1.95rem;line-height:1.15}
+ .lead{font-size:1.06rem}
+ .btn{display:flex;width:100%;margin:0 0 .6rem}
+ .dl .btn{align-self:stretch}
+ section{padding:2.4rem 0}
+ h2{font-size:1.5rem}
+ .sec-lead{font-size:1rem;margin-bottom:1.4rem}
+ .card,.note{padding:1.1rem 1.1rem}
+ .steps li{padding:1rem 1rem 1rem 3.6rem}
+ .steps li:before{left:.9rem;width:1.9rem;height:1.9rem}
+ code{white-space:normal;overflow-wrap:anywhere}
+ .note li,.card p{overflow-wrap:anywhere}
+ .tab{grid-template-columns:1fr;grid-gap:1.2rem}
+ .tab .shot{max-width:15rem;margin:0 auto}
+ .gal{grid-gap:1.2rem}
+ footer{padding:2rem 0 2.5rem}
+ footer .kofi .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="in">
+<a class="brand" href="#"><span class="logo"><img alt="" height="56" src="../icon-1024.png" width="56"/></span><span><span class="name">HearBridge <b>Browser</b></span><span class="by">by X-F1REBALL-X</span></span></a>
+<nav class="links" id="sitenav"><a href="#what">What it is</a><a href="#install">Install</a><a href="#open">Open it</a><a href="#use">Using it</a><a href="#tips">Tips</a><a href="#faq">FAQ</a><a href="#download">Download</a></nav>
+</div></header>
+
+<section class="hero"><div class="in">
+<div>
+<span class="kicker">Version 1.0.0</span>
+<h1>Your <b>PS5</b> audio, on any screen in the house.</h1>
+<p class="lead">HearBridge Browser is a payload for a jailbroken PS5. It captures the console's audio and serves it on your local network together with a player page. Open the page on your phone, tablet or PC, tap Play, and you hear the game. No Bluetooth and no extra hardware.</p>
+<a class="btn pri" href="https://github.com/X-F1REBALL-X/HearBridge-Browser/releases/tag/v1.0.0">Download 1.0.0</a>
+<a class="btn" href="#install">How to install</a>
+<a class="btn" href="https://github.com/X-F1REBALL-X/HearBridge-Browser">Source on GitHub</a>
+<p class="small">Free and open source under GPL-3.0-or-later. Developed by <a href="https://github.com/X-F1REBALL-X">X-F1REBALL-X</a>.</p>
+</div>
+<img alt="HearBridge Browser player on a tablet" class="shot" src="../screenshots/tablet.png"/>
+</div></section>
+
+<section class="band" id="what" style="--c:var(--pri)"><div class="in">
+<h2>What it is</h2>
+<p class="sec-lead">A small ELF that runs on the console and serves the player at <code>http://&lt;console-ip&gt;:8096/</code>. The audio is sent as plain 16-bit, 48 kHz stereo PCM, straight from the console to your device. Nothing leaves your network.</p>
+<div class="grid3">
+<div class="card" style="--c:var(--pri)"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Any browser</h3><p>Chrome, Firefox, Edge and Safari, including iPhone and iPad. There is also an Android app that finds the console by itself, and a portable Windows app.</p></div>
+<div class="card" style="--c:var(--amber)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><h3>Volume up to 500%</h3><p>Anything above 100% is boost. A soft limiter keeps loud scenes from clipping or distorting.</p></div>
+<div class="card" style="--c:var(--cyan)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></span><h3>Sound modes</h3><p>Normal, Game, Music, Dynamic, Voice and Night. Each one is a different tuning of the same stream, applied on your device.</p></div>
+<div class="card" style="--c:var(--mint)"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Low latency</h3><p>The Auto buffer learns the lowest delay your device can handle without dropouts. Low, Stable and Manual are there too.</p></div>
+<div class="card" style="--c:var(--rose)"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg></span><h3>Record and export</h3><p>Record what you hear, preview it, and save it as WAV, FLAC, MP3 or Opus.</p></div>
+<div class="card" style="--c:var(--violet)"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5 5.8"/></svg></span><h3>Several listeners</h3><p>More than one person can listen at the same time, each with their own quality and buffer settings.</p></div>
+</div>
+</div></section>
+
+<section id="install" style="--c:var(--pri2)"><div class="in">
+<h2>Install</h2>
+<p class="sec-lead">You need a jailbroken PS5 with an ELF loader listening on port 9021 (elfldr, or Elf Launcher which starts it for you), and a phone, tablet or computer on the same network as the console.</p>
+<ol class="steps">
+<li><b>Jailbreak the console</b><span>Use your usual exploit (for example WK Autoloader) and make sure <a href="https://github.com/ps5-payload-dev/elfldr">elfldr</a> is running on port <code>9021</code>.</span></li>
+<li><b>Load the payload</b><span>With <a href="https://x-f1reball-x.github.io/elf-launcher/docs/guide/">Elf Launcher</a>: find HearBridge Browser in the payload list, open it and press Payload. That is the one-press way.</span><span class="or">Without it: send <code>hearbridge-browser-1.0.0.elf</code> from the release to port 9021 with any payload sender, or from a PC:</span><pre><code>nc -q0 &lt;console-ip&gt; 9021 &lt; hearbridge-browser-1.0.0.elf</code></pre></li>
+<li><b>Wait for the notification</b><span>The PS5 shows a notification when HearBridge Browser is running. It now serves the player on port <code>8096</code>.</span></li>
+<li><b>Open the player</b><span>On your device, open <code>http://&lt;console-ip&gt;:8096</code>, or use the Android or Windows app. Tap Play.</span></li>
+</ol>
+<div class="callout"><b>Good to know:</b> the payload keeps running until you stop it or turn off the console. Sending it again replaces the running copy, so updating is just a matter of sending the new ELF.</div>
+</div></section>
+
+<section class="band" id="open" style="--c:var(--cyan)"><div class="in">
+<h2>Open it</h2>
+<p class="sec-lead">Three ways to listen. They all play the same page from the console, so the features are the same everywhere.</p>
+<div class="grid3">
+<div class="card" style="--c:var(--pri)"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/></svg></span><h3>In a browser</h3><p>Type <code>http://&lt;console-ip&gt;:8096</code> in the address bar. You find the console IP on the PS5 under Settings, Network, Connection Status.</p><p>On iPhone and iPad the first Play has to be a tap. That is an iOS rule, after that it plays like anywhere else.</p></div>
+<div class="card" style="--c:var(--mint)"><span class="ico"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></span><h3>Android app</h3><p>Install <code>HearBridge-Browser-1.0.0.apk</code>. It scans your network, tries the last console first and lists every console it finds. Pick yours, or type the IP by hand.</p><p>The screen stays on while audio plays, and recordings you export land in Downloads. Playback with the screen off is not there yet.</p></div>
+<div class="card" style="--c:var(--sky)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.5v7H3zM12.5 4.2 21 3v8.5h-8.5zM3 12.5h7.5v7L3 18.5zM12.5 12.5H21V21l-8.5-1.2z"/></svg></span><h3>Windows app</h3><p>Run <code>HearBridge-Browser-1.0.0-windows-x64.exe</code>. It is portable, so there is nothing to install. It opens the player in its own window.</p><p>Needs Windows 10 or 11 (x64) with WebView2, which is already part of Windows 11 and current Windows 10. The exe is not signed, so SmartScreen may warn you once: click More info, then Run anyway. If it can't reach the console, type the IP and press Retry. It remembers the last one that worked.</p></div>
+</div>
+<div class="callout"><b>Media players:</b> <code>http://&lt;console-ip&gt;:8096/live.wav</code> also works in VLC or ffplay, if you prefer one of those.</div>
+</div></section>
+
+<section id="use" style="--c:var(--amber)"><div class="in">
+<h2>Using it</h2>
+<p class="sec-lead">On a phone the page has four tabs, with the mini player always at the bottom: Play and Stop, the volume slider from 0 to 500%, and the minus and plus buttons. On a tablet or desktop everything is on one screen. Your choices are saved per device.</p>
+
+<div class="tab">
+<img alt="Play tab" class="shot" src="../screenshots/play.png" loading="lazy"/>
+<div>
+<h3><span class="ico" style="--c:var(--pri)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>Play</h3>
+<p>The big button starts and stops the stream. Under it are the L and R level meters, which show LIMIT when the limiter is working.</p>
+<ul>
+<li><b>Latency</b>: the total delay from the console to your ears, in milliseconds.</li>
+<li><b>Bitrate</b>: how much data the stream uses right now.</li>
+<li><b>Listeners</b>: how many devices are listening at the moment.</li>
+</ul>
+<p>The line below the stats sums up what is active: sound mode, quality and buffer.</p>
+</div>
+</div>
+
+<div class="tab">
+<img alt="Sound tab" class="shot" src="../screenshots/sound.png" loading="lazy"/>
+<div>
+<h3><span class="ico" style="--c:var(--cyan)"><svg viewBox="0 0 24 24"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></span>Sound</h3>
+<p><b style="color:var(--ink)">Sound mode</b></p>
+<ul>
+<li><b>Normal</b>: the untouched console mix.</li>
+<li><b>Game</b>: brings footsteps and cues forward, with a slight low cut.</li>
+<li><b>Music</b>: a gentle bass and treble lift.</li>
+<li><b>Dynamic</b>: wider and punchier, with light compression.</li>
+<li><b>Voice</b>: clearer dialogue, less bass.</li>
+<li><b>Night</b>: a strong leveler, so loud and quiet scenes even out.</li>
+</ul>
+<p><b style="color:var(--ink)">Quality</b>: PCM 48k is the full stream (about 1.5 Mbps). PCM 24k uses half of that. The μ-law options are lighter still, for weak Wi-Fi. The page marks the one it recommends for your device.</p>
+<p><b style="color:var(--ink)">Latency</b>: Auto learns your device, Low aims for about 25 ms, Stable keeps a 150 ms cushion, and Manual lets you set the buffer with the slider. Underruns and catch-ups are counted live under the slider.</p>
+</div>
+</div>
+
+<div class="tab">
+<img alt="Record tab" class="shot" src="../screenshots/record.png" loading="lazy"/>
+<div>
+<h3><span class="ico" style="--c:var(--rose)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg></span>Record</h3>
+<p>Start Play first, then press Record. It records what you hear, with the sound mode, volume and limiter included. Press it again to stop.</p>
+<ul>
+<li><b>Format</b>: WAV 16-bit, FLAC, MP3 or Opus. Formats your device can't make are marked, and the page tells you which one it recommends.</li>
+<li><b>File volume</b>: As heard keeps the level you listened at, Custom sets your own, and Normalize brings the peak to -1 dBFS.</li>
+<li><b>Preview</b>: plays the file exactly as it will be saved. Live audio is muted while the preview plays.</li>
+</ul>
+</div>
+</div>
+
+<div class="tab">
+<img alt="Info tab" class="shot" src="../screenshots/info.png" loading="lazy"/>
+<div>
+<h3><span class="ico" style="--c:var(--violet)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></span>Info</h3>
+<p>Connection details: the buffer, the network and output delay, the stream format, and whether the console is capturing.</p>
+<p>Under Device you see what your browser supports: the output sample rate and channels, which recording formats work, and a reminder that Dolby and DTS can't be decoded in a browser. This is what the page uses to pick its recommended settings.</p>
+<p>About has the version and the Ko-fi and X links.</p>
+</div>
+</div>
+</div></section>
+
+<section class="band" id="tips" style="--c:var(--mint)"><div class="in">
+<h2>Tips</h2>
+<p class="sec-lead">Two settings make most of the difference: the console's audio format, and how your device is connected.</p>
+<div class="notes">
+<article class="note" style="--c:var(--pri2)"><h3>Console audio output</h3>
+<p>Browsers can't decode Dolby or DTS, so HearBridge sends plain stereo. If you hear nothing, or only some sounds, set the PS5 to Linear PCM:</p>
+<ul>
+<li>Settings, Sound, Audio Output.</li>
+<li>Set Audio Format (Priority) to <b>Linear PCM</b>.</li>
+<li>If the console is set to a surround output, switching to a stereo output also works.</li>
+</ul>
+</article>
+<article class="note" style="--c:var(--mint)"><h3>Lower latency</h3>
+<ul>
+<li>Leave the buffer on Auto for a few minutes. It starts safe and works its way down.</li>
+<li>Put the console on Ethernet if you can. Then only your device is on Wi-Fi.</li>
+<li>Use 5 GHz Wi-Fi on your device, close to the router.</li>
+<li>Wired headphones are faster than Bluetooth ones. Bluetooth adds its own delay on top, and the page can't remove it.</li>
+<li>If you hear crackles or gaps, choose Stable, or try PCM 24k or μ-law to use less bandwidth.</li>
+</ul>
+</article>
+<article class="note" style="--c:var(--amber)"><h3>Volume boost</h3>
+<ul>
+<li>Use the boost for quiet games or small phone speakers. The limiter keeps it from clipping, and the LIMIT mark on the meters shows when it is working.</li>
+<li>Night mode is often better than extra boost for late play, since it lifts quiet parts without making loud ones louder.</li>
+</ul>
+</article>
+<article class="note" style="--c:var(--rose)"><h3>iPhone and iPad</h3>
+<ul>
+<li>Check the silent switch and the volume buttons. HearBridge asks iOS to play in silent mode, but some iOS versions still mute the browser while the switch is on.</li>
+<li>If a call or Siri interrupts the audio, tap "Tap to resume audio".</li>
+</ul>
+</article>
+</div>
+</div></section>
+
+<section id="faq" style="--c:var(--violet)"><div class="in">
+<h2>FAQ</h2>
+<p class="sec-lead">The questions that come up most.</p>
+<div class="notes">
+<article class="note" style="--c:var(--pri2)"><h3>Do I need Bluetooth or extra hardware?</h3><p>No. Everything goes over your normal Wi-Fi or Ethernet network.</p></article>
+<article class="note" style="--c:var(--mint)"><h3>Does my audio go to the internet?</h3><p>No. It only works on your local network. The console streams straight to your device and the page doesn't load anything from outside.</p></article>
+<article class="note" style="--c:var(--amber)"><h3>Why no Dolby or DTS?</h3><p>Browsers can't decode those streams, so the audio is sent as plain stereo PCM. Set the PS5 audio format to Linear PCM if you hear nothing.</p></article>
+<article class="note" style="--c:var(--cyan)"><h3>The page doesn't open.</h3><p>Check that your device is on the same network as the console and that the IP is right. Make sure the payload is running: you should have seen the notification on the PS5. If the console was rebooted, load the payload again.</p></article>
+<article class="note" style="--c:var(--rose)"><h3>I hear nothing on my iPhone.</h3><p>Check the silent switch and the volume. If iOS interrupted the audio, tap "Tap to resume audio".</p></article>
+<article class="note" style="--c:var(--violet)"><h3>Can several people listen at once?</h3><p>Yes. Each device picks its own quality and buffer. The Listeners count on the Play tab shows how many are connected.</p></article>
+<article class="note" style="--c:var(--sky)"><h3>Is it the same as HearBridge PS5?</h3><p>No. HearBridge PS5 sends audio to Bluetooth headphones. HearBridge Browser sends it to a browser on your network. The audio capture code comes from HearBridge PS5.</p></article>
+<article class="note" style="--c:var(--slate)"><h3>How do I stop it?</h3><p>Send a POST to <code>http://&lt;console-ip&gt;:8096/api/stop</code>, or reboot the console.</p></article>
+</div>
+</div></section>
+
+<section class="band" id="download" style="--c:var(--pri)"><div class="in">
+<h2>Download</h2>
+<p class="sec-lead">All files are on the <a href="https://github.com/X-F1REBALL-X/HearBridge-Browser/releases/tag/v1.0.0">1.0.0 release</a> page.</p>
+<div class="grid3 dl">
+<div class="card" style="--c:var(--pri)"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="3"/><path d="M8 10.5v3M6.5 12h3M15.5 11h.01M17.5 13h.01"/></svg></span><h3>PS5 payload</h3><span class="file">hearbridge-browser-1.0.0.elf</span><p>The part that runs on the console. Send it to port 9021 or load it from Elf Launcher.</p><a class="btn pri" href="https://github.com/X-F1REBALL-X/HearBridge-Browser/releases/download/v1.0.0/hearbridge-browser-1.0.0.elf">Download ELF <small>368 KB</small></a></div>
+<div class="card" style="--c:var(--mint)"><span class="ico"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></span><h3>Android app</h3><span class="file">HearBridge-Browser-1.0.0.apk</span><p>Finds the console on your network, so you don't have to type the IP. Android 7 or newer.</p><a class="btn pri" href="https://github.com/X-F1REBALL-X/HearBridge-Browser/releases/download/v1.0.0/HearBridge-Browser-1.0.0.apk">Download APK <small>553 KB</small></a></div>
+<div class="card" style="--c:var(--sky)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.5v7H3zM12.5 4.2 21 3v8.5h-8.5zM3 12.5h7.5v7L3 18.5zM12.5 12.5H21V21l-8.5-1.2z"/></svg></span><h3>Windows app</h3><span class="file">HearBridge-Browser-1.0.0-windows-x64.exe</span><p>Portable, nothing to install. Windows 10 or 11, x64.</p><a class="btn pri" href="https://github.com/X-F1REBALL-X/HearBridge-Browser/releases/download/v1.0.0/HearBridge-Browser-1.0.0-windows-x64.exe">Download EXE <small>6.3 MB</small></a></div>
+</div>
+</div></section>
+
+<footer id="support"><div class="in">HearBridge Browser is developed by <a href="https://github.com/X-F1REBALL-X">X-F1REBALL-X</a> and released under GPL-3.0-or-later. MP3 export uses <a href="https://github.com/zhuker/lamejs">lamejs</a> (LGPL-3.0). <a href="https://github.com/X-F1REBALL-X/HearBridge-Browser/issues">Report an issue</a>.</div>
+<div class="in kofi">
+<a class="btn" href="https://ko-fi.com/XF1REBALLX"><svg class="bi-kofi" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>Support the project on Ko-fi</a>
+<a class="btn" href="https://x.com/XxF1REBALLxX"><svg class="bi-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>Follow on X</a>
+<span>The project stays free and open source.</span>
+</div></footer>
+
+</body>
+</html>
