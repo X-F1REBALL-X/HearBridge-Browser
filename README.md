@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="docs/banner.jpg" alt="HearBridge Browser" width="100%">
-</p>
-
-# HearBridge Browser
+<img src="docs/header.png" alt="HearBridge Browser">
 
 Listen to your PS5's audio on your phone, tablet or PC. No app, no Bluetooth, just a browser on the same Wi-Fi.
 
