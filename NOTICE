@@ -1,14 +1,16 @@
 HearBridge Browser
 Copyright © 2026 X-F1REBALL-X
 
-Separate project. It grew out of the PS-Stream audio MVP and reuses the
-verified libSceAvcap2 audio-capture path, credential helpers, logging, util
-and toast-notification code from HearBridge-PS5 (Copyright © 2026
-X-F1REBALL-X), licensed under GPL-3.0-or-later. The limiter in the page is a
-port of HearBridge-PS5 src/gain.c.
+Separate project. It reuses the libSceAvcap2 audio-capture path, credential
+helpers, logging, util and toast-notification code from HearBridge-PS5
+(Copyright © 2026 X-F1REBALL-X, https://github.com/X-F1REBALL-X/HearBridge-PS5),
+licensed under GPL-3.0-or-later. The limiter in the page is a port of
+HearBridge-PS5 src/gain.c.
 
 Third party:
 - lamejs 1.2.1 (vendor/lamejs, LGPL-3.0, unmodified) — MP3 export, served at
   /lame.min.js and only loaded when an MP3 export is requested.
+  Source: https://github.com/zhuker/lamejs (v1.2.1). License text in
+  vendor/lamejs/LICENSE and vendor/lamejs/COPYING.LESSER.
 
 See LICENSE (GPL-3.0-or-later).
