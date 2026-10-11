@@ -87,11 +87,12 @@ Send a POST to `http://<console-ip>:8096/api/stop`, or reboot the console.
 You need the [ps5-payload-sdk](https://github.com/ps5-payload-dev/sdk) and Python 3.
 
 ```
+export PS5_PAYLOAD_SDK=/path/to/ps5-payload-sdk
 ./build.sh          # PS5 payload -> dist/hearbridge-browser-1.0.0.elf
 ./build.sh host     # local test server for your PC -> build/hearbridge-browser-host
 ```
 
-`build.sh` sources `/workspace/tools/ps5env.sh` to set `PS5_PAYLOAD_SDK`. Change that line to match your setup. The player page (`web/index.html`) and the MP3 encoder are embedded into the ELF by `tools/embed.py`.
+The PS5 build needs `PS5_PAYLOAD_SDK` set to your sdk folder, with the sdk's LLVM toolchain on your `PATH`. If it isn't set, `build.sh` stops with an error. The host build doesn't need the sdk. The player page (`web/index.html`) and the MP3 encoder are embedded into the ELF by `tools/embed.py`.
 
 The host build plays a test tone, so you can work on the page without a console. Use `HB_TEST=program ./build/hearbridge-browser-host` for something closer to real game audio.
 

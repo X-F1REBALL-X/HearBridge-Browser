@@ -3,7 +3,7 @@
 #   ./build.sh          -> dist/hearbridge-browser-<version>.elf   (PS5 payload, port 8096)
 #   ./build.sh host     -> build/hearbridge-browser-host           (local test server, no console needed;
 #                          HB_TEST=program ./build/hearbridge-browser-host for game-like test material)
-# Needs /workspace/tools/ps5env.sh (vendored LLVM 18 + ps5-payload-sdk) for the PS5 build.
+# The PS5 build needs PS5_PAYLOAD_SDK pointing at your ps5-payload-sdk install (and its LLVM on PATH).
 set -euo pipefail
 here="$(cd "$(dirname "$0")" && pwd)"
 ver="$(sed -n 's/^#define PSS_VERSION "\(.*\)"/\1/p' "$here/src/version.h")"
@@ -21,7 +21,15 @@ if [[ "${1:-ps5}" == "host" ]]; then
   echo "ok: $out"; exit 0
 fi
 
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}"; source /workspace/tools/ps5env.sh
+if [[ -z "${PS5_PAYLOAD_SDK:-}" ]]; then
+  echo "error: PS5_PAYLOAD_SDK is not set." >&2
+  echo "       export PS5_PAYLOAD_SDK=/path/to/ps5-payload-sdk and run again (or use ./build.sh host)." >&2
+  exit 1
+fi
+if [[ ! -x "$PS5_PAYLOAD_SDK/bin/prospero-clang" ]]; then
+  echo "error: $PS5_PAYLOAD_SDK/bin/prospero-clang not found. Is PS5_PAYLOAD_SDK set to the sdk folder?" >&2
+  exit 1
+fi
 out="$here/dist/hearbridge-browser-$ver.elf"
 "$PS5_PAYLOAD_SDK/bin/prospero-clang" -std=c11 -Wall -Wextra -O2 "${inc[@]}" -o "$out" \
   "${common[@]/#/$here/src/}" "$here/src/creds.c" "$here/src/avcap2.c" -lpthread
