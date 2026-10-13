@@ -20,7 +20,7 @@ import (
 
 const (
 	appName     = "HearBridge Browser"
-	appVersion  = "1.0.0"
+	appVersion  = "1.0.1"
 	defaultIP   = "192.168.1.50"
 	defaultPort = "8096"
 )

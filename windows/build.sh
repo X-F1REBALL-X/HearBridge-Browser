@@ -2,7 +2,7 @@
 # Cross-compile the HearBridge Browser Windows app from Linux (or build on Windows with Git Bash).
 set -euo pipefail
 cd "$(dirname "$0")"
-VER=1.0.0
+VER=1.0.1
 GOWINRES=${GOWINRES:-$(go env GOPATH)/bin/go-winres}
 [ -x "$GOWINRES" ] || go install github.com/tc-hib/go-winres@latest
 # icon, version info and manifest -> rsrc_windows_amd64.syso (not committed)

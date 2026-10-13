@@ -5,7 +5,7 @@
   "RT_MANIFEST": {
     "#1": {
       "0409": {
-        "identity": { "name": "HearBridge.Browser", "version": "1.0.0.0" },
+        "identity": { "name": "HearBridge.Browser", "version": "1.0.1.0" },
         "description": "HearBridge Browser",
         "minimum-os": "win10",
         "execution-level": "as invoker",
@@ -27,17 +27,17 @@
   "RT_VERSION": {
     "#1": {
       "0000": {
-        "fixed": { "file_version": "1.0.0.0", "product_version": "1.0.0.0" },
+        "fixed": { "file_version": "1.0.1.0", "product_version": "1.0.1.0" },
         "info": {
           "0409": {
             "CompanyName": "X-F1REBALL-X",
             "FileDescription": "HearBridge Browser",
-            "FileVersion": "1.0.0",
+            "FileVersion": "1.0.1",
             "InternalName": "HearBridge-Browser",
             "LegalCopyright": "X-F1REBALL-X",
             "OriginalFilename": "HearBridge-Browser-1.0.0-windows-x64.exe",
             "ProductName": "HearBridge Browser",
-            "ProductVersion": "1.0.0"
+            "ProductVersion": "1.0.1"
           }
         }
       }
