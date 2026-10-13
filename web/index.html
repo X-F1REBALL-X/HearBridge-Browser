@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
 <meta name="color-scheme" content="dark">
-<title>HearBridge Browser v1.0.0</title>
+<title>HearBridge Browser v1.0.1</title>
 <style>
 :root{color-scheme:dark;--bg:#0b0d12;--card:#151922;--card2:#1b2030;--fg:#e8ecf3;--muted:#8b93a7;--accent:#2b6cff;--ok:#3dd68c;--warn:#f5c542;--bad:#ff5d5d;--boost:#f5a623;--track:#0e121a;--line:#22283a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -164,7 +164,7 @@ footer{padding:4px 16px 18px;color:var(--muted);font-size:12px;text-align:center
 </style>
 <header>
   <div class="brand">
-    <h1>HearBridge<small>Browser</small><span class="ver" id="verTag">v1.0.0</span></h1>
+    <h1>HearBridge<small>Browser</small><span class="ver" id="verTag">v1.0.1</span></h1>
     <div class="by">by X-F1REBALL-X · <a class="kofi" href="https://ko-fi.com/XF1REBALLX" target="_blank" rel="noopener noreferrer"><svg class="bi bi-kofi" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>Support on Ko-fi</a><span class="xwrap" hidden> · <a class="kofi xlink" target="_blank" rel="noopener noreferrer"><svg class="bi bi-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>X-F1REBALL-X</a></span></div>
   </div>
   <div class="conn" id="conn" role="status" aria-live="polite"><span class="dot"></span><span id="connTxt">Idle</span></div>
@@ -296,10 +296,13 @@ footer{padding:4px 16px 18px;color:var(--muted);font-size:12px;text-align:center
       <div class="kv" id="capTxt">console: –</div>
       <div class="lbl">Device</div>
       <div class="kv" id="devInfo">Device: detecting…</div>
+      <div class="lbl">Payload</div>
+      <button id="quitBtn" class="kofi-btn" style="background:#b3261e;color:#fff;border:0;cursor:pointer">Stop HearBridge</button>
+      <div class="kv" id="quitTxt">Closes the payload on the PS5. No reboot needed; load the ELF again to start it.</div>
       <div class="lbl">About</div>
       <a class="kofi-btn" href="https://ko-fi.com/XF1REBALLX" target="_blank" rel="noopener noreferrer"><svg class="bi bi-kofi" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>Support on Ko-fi</a>
       <a class="kofi-btn x-btn xlink" target="_blank" rel="noopener noreferrer" hidden><svg class="bi bi-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>X-F1REBALL-X</a>
-      <div class="kv">HearBridge Browser v1.0.0 · by X-F1REBALL-X · LAN only · audio is never sent anywhere else. MP3 export uses lamejs (LGPL-3.0), loaded only when you export MP3.</div>
+      <div class="kv">HearBridge Browser v1.0.1 · by X-F1REBALL-X · LAN only · audio is never sent anywhere else. MP3 export uses lamejs (LGPL-3.0), loaded only when you export MP3.</div>
     </section>
   </div>
 </main>
@@ -326,7 +329,7 @@ footer{padding:4px 16px 18px;color:var(--muted);font-size:12px;text-align:center
 'use strict';
 /* X (Twitter) profile for the 'X-F1REBALL-X' buttons; empty string hides them. */
 const X_URL = 'https://x.com/XxF1REBALLxX';
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.0.1';
 const $ = (id) => document.getElementById(id);
 for (const a of document.querySelectorAll('.xlink')) {
   if (X_URL) { a.href = X_URL; a.hidden = false; if (a.parentElement.classList.contains('xwrap')) a.parentElement.hidden = false; }
@@ -1390,14 +1393,42 @@ async function poll() {
     rttMs = isNaN(rttMs) ? rtt : rttMs * 0.7 + rtt * 0.3;
     $('lisV').textContent = typeof j.listeners === 'number' ? j.listeners : '–';
     $('capTxt').textContent = 'console: ' + (j.capture || 'ready');
-    if (!playing) setConn('', 'Ready');
+    if (!playing && !quitDone) setConn('', 'Ready');
   } catch (_) {
     $('lisV').textContent = '–';
     $('capTxt').textContent = 'console: unreachable';
-    if (!playing) setConn('bad', 'Unreachable');
+    if (!playing && !quitDone) setConn('bad', 'Unreachable');
   }
 }
-setInterval(poll, 2000);
+const pollTimer = setInterval(poll, 2000);
+/* ---------- Stop the payload on the console ---------- */
+var quitArmed = 0, quitDone = false;
+$('quitBtn').addEventListener('click', async () => {
+  if (quitDone) return;
+  if (!quitArmed) {
+    quitArmed = setTimeout(() => { quitArmed = 0; $('quitBtn').textContent = 'Stop HearBridge'; }, 5000);
+    $('quitBtn').textContent = 'Tap again to stop HearBridge';
+    return;
+  }
+  clearTimeout(quitArmed); quitArmed = 0;
+  $('quitBtn').disabled = true; $('quitBtn').textContent = 'Stopping…';
+  try {
+    const r = await fetch('/api/stop', { method: 'POST', headers: { 'X-HearBridge': 'stop' }, cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+  } catch (e) {
+    $('quitBtn').disabled = false; $('quitBtn').textContent = 'Stop HearBridge';
+    $('quitTxt').textContent = 'Could not stop: ' + e.message;
+    return;
+  }
+  quitDone = true;
+  try { if (playing) stop(); } catch (_) {}
+  clearInterval(pollTimer);
+  $('quitBtn').textContent = 'HearBridge stopped';
+  $('quitTxt').textContent = 'The payload has closed on the PS5. Load the ELF again to start it.';
+  setConn('bad', 'Stopped');
+  $('hint').textContent = 'HearBridge stopped on the console.';
+});
+
 poll();
 window.__hb = { version: APP_VERSION, X_URL, caps, recommendQuality, recommendMode, get take() { return take; }, get fmt() { return fmt; }, get autoMs() { return autoMs; }, get underrunTotal() { return underrunTotal; }, bufTarget, get nextT() { return nextT; }, get drops() { return drops; }, get ac() { return ac; } };
 })();
