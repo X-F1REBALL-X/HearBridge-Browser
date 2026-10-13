@@ -376,6 +376,18 @@ static void handle_request(client_t *c)
         return;
     }
     if (strcmp(method, "POST") == 0 && strcmp(path, "/api/stop") == 0) {
+        char hv[8], org[128], host[128];
+        /* Only our own page may stop us: it sends a custom header (a cross-site
+         * form or fetch can't without a preflight we never answer) and, if the
+         * browser sends an Origin, it must be this same host. */
+        if (!header(c->in, "X-HearBridge", hv, sizeof hv) || strcmp(hv, "stop") != 0 ||
+            (header(c->in, "Origin", org, sizeof org) &&
+             (!header(c->in, "Host", host, sizeof host) ||
+              !(strncmp(org, "http://", 7) == 0 && strcasecmp(org + 7, host) == 0)))) {
+            log_line("http: stop refused from %s (bad header/origin)", c->peer);
+            reply(c, "403 Forbidden", "application/json", "{\"ok\":false}", 12, NULL);
+            return;
+        }
         log_line("http: stop requested by %s", c->peer);
         g_stopreq = 1;
         reply(c, "200 OK", "application/json", "{\"ok\":true}", 11, NULL);
