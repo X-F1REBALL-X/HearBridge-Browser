@@ -1,0 +1,5 @@
+# Keep the GitHub language bar on the app's own code.
+# Build files and helper scripts
+build.sh linguist-detectable=false
+tools/** linguist-detectable=false
+android/icon-src/** linguist-detectable=false
