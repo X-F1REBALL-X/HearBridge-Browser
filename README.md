@@ -4,7 +4,7 @@ Listen to your PS5's audio on your phone, tablet or PC. No Bluetooth or extra ha
 
 HearBridge Browser is a small payload for a jailbroken PS5. It captures the console's audio output and serves it on your local network, together with a player page. Open the page, tap Play, and you hear the game.
 
-Full guide with setup, tips and FAQ: https://x-f1reball-x.github.io/HearBridge-Browser/guide/
+Full guide with setup, tips and FAQ: https://x-f1reball-x.github.io/HearBridge-Browser/
 
 <p align="center">
   <img src="docs/banner.png" alt="HearBridge Browser on phone, tablet and PC" width="100%">
